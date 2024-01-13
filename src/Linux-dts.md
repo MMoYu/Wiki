@@ -1,9 +1,3 @@
----
-title: Linux_dts
-date: 2023年10月16日 10:42:03
-description: "Linux 驱动笔记"
-tags: [Dts,Linux]
----
 # DTS - Device Tree Source
 
 --- 纷繁芜杂，如星星点点；点清且明，如月映波光
