@@ -28,7 +28,7 @@ jobs:
         rm -rf *
         mv ../book/* .
         echo "处理独立域名的绑定 CNAME文件"
-        echo "dev.leiyanhui.com" >> CNAME
+        # echo "dev.leiyanhui.com" >> CNAME
     - name: 部署
       run: |
         git config user.name "zhuliuxing"
