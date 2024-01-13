@@ -26,13 +26,11 @@ jobs:
         cd  gh-pages
         echo "删除 ref 以避免保留历史记录"
         rm -rf *
-        mv ../book/* .
-        echo "处理独立域名的绑定 CNAME文件"
+        # mv ../book/* .
+        # echo "处理独立域名的绑定 CNAME文件"
         # echo "dev.leiyanhui.com" >> CNAME
     - name: 部署
       run: |
-        git config user.name "zhuliuxing"
-        git config user.email "Liuxing.Zhu@luxshare-ict.com"
         git init
         #git checkout -b main
         git add -A
