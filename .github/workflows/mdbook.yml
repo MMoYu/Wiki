@@ -8,7 +8,7 @@ jobs:
   mdbook_build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: 安装 mdbook
@@ -31,6 +31,8 @@ jobs:
         # echo "dev.leiyanhui.com" >> CNAME
     - name: 部署
       run: |
+        git config user.name "zhuliuxing"
+        git config user.email "Liuxing.Zhu@luxshare-ict.com"
         git init
         #git checkout -b main
         git add -A
