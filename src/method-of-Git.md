@@ -287,6 +287,7 @@ git clone "ssh链接"即可
   ```
 
 - invalid syntax
+  <mark>使用项目自带的repo即可：.repo/repo/repo syncu</mark>
 
   ```c
   # 普通用户repo失效
