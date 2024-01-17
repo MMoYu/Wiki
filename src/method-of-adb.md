@@ -1,12 +1,4 @@
----
-title: method-of-adb
-date: 2023-11-21 14:51:14
-description: "Android Debug Bridge"
-sticky: 998
-tags: [Android,ADB,Linux]
----
-
-#### 常用ADB命令整理
+# 常用ADB命令整理
 
 --- Android Debug Bridge（安卓调试桥）
 
@@ -87,7 +79,7 @@ tags: [Android,ADB,Linux]
 
 ---
 
-#### getprop/setprop/watchprops
+## getprop/setprop/watchprops
 
 --- 在<mark>Android</mark>系统中，使用getprop命令可以从系统中读取一些设备信息，属性的文件
 
@@ -135,7 +127,7 @@ tags: [Android,ADB,Linux]
 
 ---
 
-#### User版本开启ADB
+## User版本开启ADB
 
 - Android
 

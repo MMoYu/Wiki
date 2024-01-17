@@ -1,18 +1,11 @@
----
-title: selinux-sepolicy
-date: 2023-11-22 14:02:25
-description: "安全增强型 Linux（Security-Enhanced Linux）"
-tags: [selinux,Android] 
----
-
-### Android Sepolicy
-#### 简介
+# Android Sepolicy
+## 简介
 
 --- Android安全模型的一部分，一种权限管理策略，即使是进程具有root权限，SELinux也能通过创建⾃动化的安全策略(sepolicy)来限制特权进程来增强 Android的安全性 ；主要就是限制Android的权限，避免滥用造成的安全风险问题。
 
 ---
 
-#### 查看selinux的详情
+## 查看selinux的详情
 
 - ps -z
   --- 显示selinux的角色、类型、安全级别；格式：user：role：type：rank
@@ -36,7 +29,7 @@ tags: [selinux,Android]
 
 ---
 
-#### selinux 关键文件
+## selinux 关键文件
 
 - 政策文件 
 
@@ -72,7 +65,7 @@ tags: [selinux,Android]
 
 ---
 
-#### selinux 问题确认
+## selinux 问题确认
 
 1. user版本相关功能不正常，userdebug版本功能正常，可能为selinux权限问题;
 2. kernel log、logcat中出现<mark>avc：denied</mark>字样log，需进一步复现确认是否为selinux权限问题;
@@ -95,7 +88,7 @@ tags: [selinux,Android]
 
 ---
 
-#### sepolicy rule 读法/添加/验证
+## sepolicy rule 读法/添加/验证
 
 - selinux log读法/添加
   --- 一般缺少search、write、read权限都如下：
@@ -138,7 +131,7 @@ tags: [selinux,Android]
 
 ---
 
-#### 案例：Motor驱动
+## 案例：Motor驱动
 
 1：userdebug：会上报avc问题，但permission=1仅上报不阻止
 

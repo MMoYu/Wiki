@@ -1,19 +1,11 @@
----
-title: method of Git
-date: 2023-11-06 11:47:18
-description: "method organization of GIT"
-sticky: 997
-tags: [Git,Gerrit,Github]
----
-
-### Git/Gerrit平台
+# Git/Gerrit平台
 
 --- Git比svn好用
 
 --- Gerrit一款开源免费的代码评审平台，基于GIT的版本控制系统，目前国内大多数公式均采用Gerrit平台进行代码评审/<mark>review</mark>管控。
 ==> 项目主要使用该平台进行Merge审核。
 
-#### Gerrit添加账号和密钥
+## Gerrit添加账号和密钥
 
 ![image-20231120145012193](method-of-Git/image-20231120145012193.png)
 
@@ -22,7 +14,7 @@ tags: [Git,Gerrit,Github]
 
 ---
 
-#### Gerrit添加仓库和分支
+## Gerrit添加仓库和分支
 
 1：联系管理员添加分支
 
@@ -40,7 +32,7 @@ tags: [Git,Gerrit,Github]
 
 ---
 
-#### Gerrit拉取代码
+## Gerrit拉取代码
 
 --- Gerrit拉取代码和github差不多
 

@@ -1,10 +1,3 @@
----
-title: method of Kernel
-date: 2023-11-03 11:10:42
-description: "mpiling and debugging method of Kernel based-on Linux OS"
-sticky: 999
-tags: [Kernel,Debug,Linux]
----
 
 # Linux-Kernel驱动调试
 
