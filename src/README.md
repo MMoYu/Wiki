@@ -1,3 +1,1 @@
-world，hello，waaagh ！！！
-
-test 4
+作为个人wiki使用；
