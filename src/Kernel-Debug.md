@@ -112,25 +112,91 @@ cat /sys/class/thermal/cooling_device0/cur_state
 ```c
 # 查看i2c总线是否开启
 ls /dev/i2c-*
+```
 
-==> 使用第三方i2c-tools 工具
+### I2C-TOOLS
+
+--- 适用于挂载在I2C上的设备（例如某些挂载在i2c上的codec）
+
+```c
+参数y：关闭交互模式，使用该参数时，不会提示警告信息。
+
+参数a：扫描总线上的所有设备。
+
+参数q：使用SMBus的“quick write”命令进行检测，不建议使用该参数。
+
+参数r：使用SMBus的“receive byte”命令进行检测，不建议使用该参数。
+```
+
+- i2cdetect
+
+```c
 # 检测当前系统有几组I2C总线
 i2cdetect -l
 
-# 查看指定I2C总线的挂载情况
+# 查看指定I2C3总线的挂载情况
 i2cdetect -a 3
 i2cdetect -r 3
 i2cdetect -y 3 //如显示i2c3的挂载情况
+```
 
+- i2cdump
+
+```c
 # i2cdump 读取指定设备上的全部寄存器的值
 i2cdump -y(自动执行yes) -f 0 0x30 //读取I2c0总线上0x30地址里面的数据
-
-# 读取指定IIC设备的某个寄存器的值，如下读取地址为0x30器件中的0x01寄存器值。
-i2cget -f -y 3 0x30 0x01
-
-# 写入指定IIC设备的某个寄存器的值，如下设置地址为0x30器件中的0x01寄存器值为0x02；
-i2cset -f -y 3 0x30 0x01 0x02
 ```
+
+- i2cget
+
+```c
+# 查询单个寄存器值
+# 读取指定IIC设备的某个寄存器的值，如下读取I2C0地址为0x30器件中的0x01寄存器值。
+i2cget -f -y 0 0x30 0x01
+```
+
+- i2cset
+
+```c
+# 修改单个寄存器值
+# 写入指定IIC设备的某个寄存器的值，如下设置I2C0地址为0x30器件中的0x01寄存器值为0x02；
+i2cset -f -y 0 0x30 0x01 0x02
+```
+
+---
+
+### IO命令
+
+--- 适合SOC寄存器查询
+
+```c
+# 例如查询SOC上的I2S
+cat proc/iomem | grep i2s
+```
+
+```c
+# 查询fe41000的寄存器值
+io -4 -l 0x40 0xfe4100000
+// -1|2|4     Sets memory access size in bytes (default byte)
+```
+
+![image-20240118151440877](Kernel-Debug/image-20240118151440877.png)
+
+![image-20240118151730657](Kernel-Debug/image-20240118151730657.png)
+
+---
+
+## regmap
+
+```c
+ls /sys/kernel/debug/regmap/
+```
+
+```c
+cat /sys/kernel/debug/regmap/0-0020-rk817-codec/registers
+```
+
+![image-20240118152042629](Kernel-Debug/image-20240118152042629.png)
 
 ---
 
