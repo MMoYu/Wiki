@@ -192,9 +192,79 @@ git clone "ssh链接"即可
   git fetch origin
   
   # 对比
-  git diff 本地分支 origin/xxx
+  git diff 本地分支 origin/xxx //只能看到diff内容
+  
+  # 通过log查看区别
+  git log
+  git log origin/xxxx 
   ```
   
+
+---
+
+#### Git-切换分支同步修改
+
+- 将当前分支修改放入一个新的Git分支
+
+  ```c
+  # 暂存
+  git stash
+      
+  # 创建新的分支
+  git checkout -b new-feature
+      
+  # 将暂存拉到新的分支
+  git stash apply
+  ```
+
+---
+
+#### Git-解除本地分支冲突
+
+- 保存修改文件和记录修改内容
+
+- 通过git stash 解决冲突
+
+  ```c
+  # 暂存
+  git stash
+      
+  # pull 更新
+  git pull <remote> <branch>
+  //这里可以检查下是否是最新的，可能要拉取下远程分支
+  
+  # 还原暂存
+  git stash pop
+  ```
+
+---
+
+#### Git stash的用法
+
+- git stash 暂存本地修改至缓存区
+
+- Git-stash pop 和 Git-stash apply的区别
+
+  ```c
+  # 查看保存的信息和标记
+  git stash list
+  
+  # 拉取方式
+  git stash pop 	//拉取最新的暂存区同时删除对应的stash list
+  git stash apply	//不删除对应的stash list
+  
+  # 删除多的list
+  git stash drop	//删除最新的list
+  git stash claer	//清除全部的stash
+  ```
+
+- 指定stash list
+
+  ```c
+  # git stash list
+  
+  # git stash xxxx stash@{x}
+  ```
 
 ---
 
