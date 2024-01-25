@@ -67,6 +67,9 @@ git clone "ssh链接"即可
 
   ```c
   repo forall -c git clean -fd && repo forall -c git reset --hard && repo sync -c --no-tags
+  
+  # 解决repo问题
+  .repo/repo/repo forall -c git clean -fd && .repo/repo/repo forall -c git reset --hard && .repo/repo/repo sync -c --no-tags
   ```
 
 - 编译

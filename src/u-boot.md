@@ -1,14 +1,4 @@
----
-title: u-boot
-date: 2023-11-23 15:53:03
-description: 学习中-草稿
-tags: u-boot
----
-
-111。
-
-
-
+# u-boot
 参考自：[U-Boot 之八 详解 Driver Model 架构、配置、命令、初始化流程_u_boot_driver_ZC·Shou的博客-CSDN博客](https://blog.csdn.net/ZCShouCSDN/article/details/128600865#:~:text=U-Boot 的 DM 使用 uclass 和,udevice 这两个抽象的类来管理所有的设备驱动，这两个抽象类分别各自对应 uclass_driver 和 driver 。)
 
 - u-boot 的设备树和kernel共用一套；目前均采用设备树的方式配置
@@ -34,3 +24,21 @@ tags: u-boot
   
   uclass` 是根据 `uclass_driver动态创建的。
 
+## u-boot参数--cmdline
+
+--- cmdline 由多个数据拼接而成，将重复数据过滤后再传给kernel；
+--- cmdline 是uboot引导内核启动时传给内核的，作用是指导内核启动；内核启动阶段会去解析cmdline，按照cmdline去指导内核启动
+
+- 查询cmdlie
+
+  ```c
+  cat proc/cmdline
+  ```
+
+  ![image-20240122141936871](u-boot/image-20240122141936871.png)
+
+- cmdline 参数说明
+
+  - [iTOP-RK3568开发板Uboot参数-内核启动参数cmdline_rk3568 uboot bootarg-CSDN博客](https://blog.csdn.net/mucheni/article/details/130727385)
+
+  
