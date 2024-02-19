@@ -1,11 +1,3 @@
----
-title: DMA
-date: 2024-01-17 10:32:23
-description: "初步理解"
-password: wiko_luxshare
-tags: [Audio,Linux,DMA]
----
-
 #  DMA  Direct Memory Access
 
 --- DMA传输将数据从一个地址空间复制到另一个地址空间，提供在外设和存储器之间或者存储器和存储器之间的高速数据传输

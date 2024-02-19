@@ -73,7 +73,29 @@
 
 
 
+---
 
+## 交叉编译
+
+### Android NDK交叉编译
+
+--- 适用于Android平台，参考AS005文档
+
+### 项目源码环境 
+
+--- 适用于Android平台，参考AS005文档
+
+### 源码编译后的输出目录下进行环境编译
+
+--- 适用于 Linux；应该也适用于android(未验证)
+
+- Linux
+  一般会在buildroot/output/rockchip_rkxx/host下 
+  - buildroot/output/rockchip_rkxx/host/bin  看编译版本
+  - 在buildroot/output/rockchip_rkxx/host/  写源码 hello.c
+  -  ./host/bin/arm-buildroot-linux-gnueabihf-gcc hello.c -o hello
+- android
+  待后续验证补充
 
 
 
