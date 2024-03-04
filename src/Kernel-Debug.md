@@ -362,3 +362,17 @@ sudo arecord -f cd -Dhw:1 | aplay -Dhw:1
 #endif
 ```
 
+---
+
+---
+
+## dtb反编译
+
+```c
+# fdtdump工具
+sudo apt-get install device-tree-complier
+
+# 反编译
+fdtdump xxx.dtc >  xxx.dts
+```
+
