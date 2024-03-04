@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kernel-Debug - world hello</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">首页</a></li><li class="chapter-item expanded "><a href="Kernel-Debug.html" class="active"><strong aria-hidden="true">1.</strong> Kernel-Debug</a></li><li class="chapter-item expanded "><a href="method-of-adb.html"><strong aria-hidden="true">2.</strong> adb-method</a></li><li class="chapter-item expanded "><a href="method-of-Git.html"><strong aria-hidden="true">3.</strong> Git-method</a></li><li class="chapter-item expanded "><a href="Linux.html"><strong aria-hidden="true">4.</strong> DTS</a></li><li class="chapter-item expanded "><a href="selinux-sepolicy.html"><strong aria-hidden="true">5.</strong> selinux-sepolicy</a></li><li class="chapter-item expanded "><a href="u-boot.html"><strong aria-hidden="true">6.</strong> uboot</a></li><li class="chapter-item expanded "><a href="DMA.html"><strong aria-hidden="true">7.</strong> DMA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">world hello</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="linux-kernel驱动调试"><a class="header" href="#linux-kernel驱动调试">Linux-Kernel驱动调试</a></h1>
+<p>--- echo 0 &gt; /proc/sys/kernel/sysrq 关闭   1开启   内核日志</p>
+<h2 id="dmesg"><a class="header" href="#dmesg">DMESG</a></h2>
+<p>---dmesg指令打印的内容只与kernel相关，它的log源于内核缓冲区</p>
+<pre><code class="language-stylus">//实时监控dmesg日志输出信息
+[root@RedHat_test ~]# watch &quot;dmesg | tail -20&quot;
+
+//输出dmesg至文档
+dmesg &gt; xx.log
+==&gt; exit后adb pull xx.log C:\Users\xxxxx
+</code></pre>
+<hr />
+<h2 id="gpio"><a class="header" href="#gpio">GPIO</a></h2>
+<pre><code class="language-c">//查看gpio信息
+cd sys/kernel/debug
+cat gpio
+
+# 使能引脚GPIO1_C4
+echo 52 &gt; /sys/class/gpio/export
+
+# 设置引脚为输入模式
+echo in &gt; /sys/class/gpio/gpio52/direction
+# 读取引脚的值
+cat /sys/class/gpio/gpio52/value
+
+# 设置引脚为输出模式
+echo out &gt; /sys/class/gpio/gpio52/direction
+# 设置引脚为低电平
+echo 0 &gt; /sys/class/gpio/gpio52/value
+# 设置引脚为高电平
+echo 1 &gt; /sys/class/gpio/gpio52/value
+
+# 复位引脚
+echo 52 &gt; /sys/class/gpio/unexport
+
+GPIO被占用会报错，可能这个个引脚已被使用，需在设备树中自行查找
+</code></pre>
+<hr />
+<h2 id="input事件"><a class="header" href="#input事件">input事件</a></h2>
+<p>--- 查看linux下事件</p>
+<pre><code class="language-c"># 查看总共有几个事件
+ ls /dev/input/
+ 
+# 查看event对应的设备信息
+cat /proc/bus/iio/devices
+
+# 直接读取事件的输入
+cat /dev/input/event4
+
+# evtest
+</code></pre>
+<hr />
+<h2 id="adc"><a class="header" href="#adc">ADC</a></h2>
+<p>--- 一般ADC接口有两种：温度传感器，逐次逼近ADC</p>
+<ul>
+<li><a href="https://wiki.t-firefly.com/zh_CN/ROC-RK3568-PC/driver_adc.html"> ADC 使用 — Firefly Wiki (t-firefly.com)</a></li>
+</ul>
+<pre><code class="language-c"># TS-ADC(Temperature Sensor)：支持两通道，时钟频率必须低于800KHZ
+# SAR-ADC(Successive Approximation Register)：支持六通道单端10位的SAR-ADC，时钟频率必须小于13MHZ。
+
+# 获取所有的ADC值
+cat /sys/bus/iio/devices/iio\:device0/in_voltage*_raw
+==&gt; 逐次逼近ADC：1.8v上拉，10位采样率，因此读出来的值为1024,实际电压计算公式：Vresult = (1800mv * 读出来的值) / 1023;
+</code></pre>
+<hr />
+<h2 id="uart-串口"><a class="header" href="#uart-串口">UART-串口</a></h2>
+<table><thead><tr><th>串口</th><th>功能</th></tr></thead><tbody>
+<tr><td>TXD</td><td>发送信号线</td></tr>
+<tr><td>RXD</td><td>接受信号线</td></tr>
+</tbody></table>
+<pre><code class="language-c"># 检查串口设备是否成功使能
+ls /dev/tty*
+</code></pre>
+<hr />
+<h2 id="fan"><a class="header" href="#fan">FAN</a></h2>
+<pre><code class="language-c"># 查看风扇状态
+cat /sys/class/thermal/cooling_device0/cur_state
+</code></pre>
+<hr />
+<h2 id="i2c"><a class="header" href="#i2c">I2C</a></h2>
+<pre><code class="language-c"># 查看i2c总线是否开启
+ls /dev/i2c-*
+</code></pre>
+<h3 id="i2c-tools"><a class="header" href="#i2c-tools">I2C-TOOLS</a></h3>
+<p>--- 适用于挂载在I2C上的设备（例如某些挂载在i2c上的codec）</p>
+<pre><code class="language-c">参数y：关闭交互模式，使用该参数时，不会提示警告信息。
+
+参数a：扫描总线上的所有设备。
+
+参数q：使用SMBus的“quick write”命令进行检测，不建议使用该参数。
+
+参数r：使用SMBus的“receive byte”命令进行检测，不建议使用该参数。
+</code></pre>
+<ul>
+<li>i2cdetect</li>
+</ul>
+<pre><code class="language-c"># 检测当前系统有几组I2C总线
+i2cdetect -l
+
+# 查看指定I2C3总线的挂载情况
+i2cdetect -a 3
+i2cdetect -r 3
+i2cdetect -y 3 //如显示i2c3的挂载情况
+</code></pre>
+<ul>
+<li>i2cdump</li>
+</ul>
+<pre><code class="language-c"># i2cdump 读取指定设备上的全部寄存器的值
+i2cdump -y(自动执行yes) -f 0 0x30 //读取I2c0总线上0x30地址里面的数据
+</code></pre>
+<ul>
+<li>i2cget</li>
+</ul>
+<pre><code class="language-c"># 查询单个寄存器值
+# 读取指定IIC设备的某个寄存器的值，如下读取I2C0地址为0x30器件中的0x01寄存器值。
+i2cget -f -y 0 0x30 0x01
+</code></pre>
+<ul>
+<li>i2cset</li>
+</ul>
+<pre><code class="language-c"># 修改单个寄存器值
+# 写入指定IIC设备的某个寄存器的值，如下设置I2C0地址为0x30器件中的0x01寄存器值为0x02；
+i2cset -f -y 0 0x30 0x01 0x02
+</code></pre>
+<hr />
+<h3 id="io命令"><a class="header" href="#io命令">IO命令</a></h3>
+<p>--- 适合SOC寄存器查询</p>
+<pre><code class="language-c"># 例如查询SOC上的I2S
+cat proc/iomem | grep i2s
+</code></pre>
+<pre><code class="language-c"># 查询fe41000的寄存器值
+io -4 -l 0x40 0xfe4100000
+// -1|2|4     Sets memory access size in bytes (default byte)
+</code></pre>
+<p><img src="Kernel-Debug/image-20240118151440877.png" alt="image-20240118151440877" /></p>
+<p><img src="Kernel-Debug/image-20240118151730657.png" alt="image-20240118151730657" /></p>
+<hr />
+<h2 id="regmap"><a class="header" href="#regmap">regmap</a></h2>
+<pre><code class="language-c">ls /sys/kernel/debug/regmap/
+</code></pre>
+<pre><code class="language-c">cat /sys/kernel/debug/regmap/0-0020-rk817-codec/registers
+</code></pre>
+<p><img src="Kernel-Debug/image-20240118152042629.png" alt="image-20240118152042629" /></p>
+<hr />
+<h2 id="spi"><a class="header" href="#spi">SPI</a></h2>
+<table><thead><tr><th>SPI</th><th>功能</th></tr></thead><tbody>
+<tr><td>MOSI</td><td>主设备输出/从设备输入</td></tr>
+<tr><td>MISO</td><td>主设备输入/从设备输出</td></tr>
+<tr><td>CLOCK</td><td>时钟信号线</td></tr>
+<tr><td>CS0</td><td>片选信号线0</td></tr>
+<tr><td>CS1</td><td>片选信号线1</td></tr>
+</tbody></table>
+<pre><code class="language-c"># 检查SPI设备
+ls /dev/spi*
+</code></pre>
+<hr />
+<h2 id="pwm设备"><a class="header" href="#pwm设备">PWM设备</a></h2>
+<pre><code class="language-c"># 查看pwm是否开启
+ls /sys/class/pwm/
+
+示例：
+pwm1-&gt;pwmchip1
+pwm5-&gt;pwmchip2
+pwm7-&gt;pwmchip3
+
+==&gt; 操作PWM
+# 将指定pwm导出到用户空间
+echo 0 &gt; /sys/class/pwm/pwmchip1/export
+
+# 设置pwm周期 单位为ns
+echo 1000000 &gt; /sys/class/pwm/pwmchip1/pwm0/period
+
+# 设置占空比
+echo 500000 &gt; /sys/class/pwm/pwmchip1/pwm0/duty_cycle
+
+# 设置pwm极性
+echo &quot;normal&quot; &gt; /sys/class/pwm/pwmchip1/pwm0/polarity
+
+# 使能pwm
+echo 1 &gt; /sys/class/pwm/pwmchip1/pwm0/enable
+
+# 取消将pwm3导出到用户空间
+echo 0 &gt; /sys/class/pwm/pwmchip1/unexport
+</code></pre>
+<hr />
+<h2 id="interrupts-中断信息"><a class="header" href="#interrupts-中断信息">Interrupts 中断信息</a></h2>
+<pre><code class="language-c">//查看Linux内核的中断信息
+cat /proc/interrupts   //这个主要是硬件中断信息
+==&gt;hp-det-gpio = &lt;&amp;gpio4 RK_PA4 GPIO_ACTIVE_LOW&gt;; 耳机设置后会看到headset中断
+中断号 CPU0  CPU1  CPU2  CPU3使用次数                                   中断名字
+119:    0     0     0     0        rockchip_gpio_irq   4 Edge      headset_detect
+
+
+cat /proc/softirqs     //软中断
+
+
+cat /sys/kernel/irq/xxx //可以看到具体的中断信息
+</code></pre>
+<hr />
+<h2 id="音频功能调试-linux"><a class="header" href="#音频功能调试-linux">音频功能调试-Linux</a></h2>
+<p>--- Linux 使用alsa；Android使用tinyalsa</p>
+<ul>
+<li>Lingx 音频调试方法</li>
+</ul>
+<pre><code class="language-c"># 查看当前已注册的声卡
+cat /proc/asound/cards
+
+# 查询音频时钟，确认时钟设置是否正确
+cat /sys/kernel/debug/clk/clk_summary | egrep &quot;i2s1|pll&quot;
+
+# 获取录音设备
+aplay -l
+
+# 获取录音设备
+arecord -l
+
+# 查看声卡驱动目录
+ls /dev/snd/
+
+# 列出可以控制card 1的控制器
+amixer controls -c 1
+
+# 列出所有card 1控制器能配置的值
+amixer contents -c 1
+
+# 查看声卡0控制器2的可配置的值
+amixer -Dhw:0 cget numid=2
+amixer -c 0 cget numid=2
+
+# 设置声卡0控制2的值为3
+amixer -Dhw:0 cset numid=2 3
+amixer -c 0 cset numid=2 3
+
+# 图形化查看当前信息
+alsamixer
+
+# 指定声卡0播放音频文件
+aplay -D hw:0 test.wav
+aplay -c 0 test.wav
+
+# 使用声卡0，cd音质，录制10s
+arecord -f cd -Dhw:1 -d 10 test.wav
+
+# 使用card 1录制并使用card 1进行播放
+sudo arecord -f cd -Dhw:1 | aplay -Dhw:1
+</code></pre>
+<ul>
+<li>
+<p>后续补充<mark>alsaloop、play、pacmd、pluseaudio</mark>指令</p>
+</li>
+<li>
+<p>-Dhw:0,0详解</p>
+<ul>
+<li>第一位0是指定0声卡，第二位0是指定设备0；实际完整命令如：aplay -Dhw:0,0 test.wav；</li>
+</ul>
+</li>
+<li>
+<p>-Dhw:0,0 和 -Dplughw:0,0的区别</p>
+</li>
+<li>
+<p>hw：是直接访问硬件</p>
+</li>
+<li>
+<p>plughw：是经过采样率和格式转换的插件</p>
+</li>
+</ul>
+<p>= =&gt;如RK平台，录播都是仅支持2ch，如果直接使用hw:0,0播放mono文件则会报错：Channels count non available；只能使用stereo；</p>
+<p>但是可以使用plughw:0,0的方式播放mono文件</p>
+<ul>
+<li>录音也可以使用plughw:0的方式录制mono格式的音频</li>
+</ul>
+<p>= =&gt; <mark>plughw:0</mark> 很好用</p>
+<hr />
+<h2 id="音频功能调试-andorid"><a class="header" href="#音频功能调试-andorid">音频功能调试-Andorid</a></h2>
+<hr />
+<hr />
+<h2 id="自定义log打印"><a class="header" href="#自定义log打印">自定义log打印</a></h2>
+<pre><code class="language-c">/* Debug */
+#if 1
+#define DBG(x...) printk(x)
+#else
+#define DBG(x...) do { } while (0)
+#endif
+
+#ifdef CONFIG_SND_DEBUG
+#define DBG(args...) pr_info(args)
+#else
+#define DBG(args...)
+#endif
+</code></pre>
+<hr />
+<hr />
+<h2 id="dtb反编译"><a class="header" href="#dtb反编译">dtb反编译</a></h2>
+<pre><code class="language-c"># fdtdump工具
+sudo apt-get install device-tree-complier
+
+# 反编译
+fdtdump xxx.dtc &gt;  xxx.dts
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="method-of-adb.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="method-of-adb.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

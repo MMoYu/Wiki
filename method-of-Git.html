@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Git-method - world hello</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">首页</a></li><li class="chapter-item expanded "><a href="Kernel-Debug.html"><strong aria-hidden="true">1.</strong> Kernel-Debug</a></li><li class="chapter-item expanded "><a href="method-of-adb.html"><strong aria-hidden="true">2.</strong> adb-method</a></li><li class="chapter-item expanded "><a href="method-of-Git.html" class="active"><strong aria-hidden="true">3.</strong> Git-method</a></li><li class="chapter-item expanded "><a href="Linux.html"><strong aria-hidden="true">4.</strong> DTS</a></li><li class="chapter-item expanded "><a href="selinux-sepolicy.html"><strong aria-hidden="true">5.</strong> selinux-sepolicy</a></li><li class="chapter-item expanded "><a href="u-boot.html"><strong aria-hidden="true">6.</strong> uboot</a></li><li class="chapter-item expanded "><a href="DMA.html"><strong aria-hidden="true">7.</strong> DMA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">world hello</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="gitgerrit平台"><a class="header" href="#gitgerrit平台">Git/Gerrit平台</a></h1>
+<p>--- Git比svn好用</p>
+<p>--- Gerrit一款开源免费的代码评审平台，基于GIT的版本控制系统，目前国内大多数公式均采用Gerrit平台进行代码评审/<mark>review</mark>管控。
+==&gt; 项目主要使用该平台进行Merge审核。</p>
+<h2 id="gerrit添加账号和密钥"><a class="header" href="#gerrit添加账号和密钥">Gerrit添加账号和密钥</a></h2>
+<p><img src="method-of-Git/image-20231120145012193.png" alt="image-20231120145012193" /></p>
+<ul>
+<li>Gerrit的版本有时候不支持常用的RSA加密方式
+--- 如在使用WSL2时，github可以正常拉取代码，gerrit会显示不识别，此时换一种更先进的加密方式，如ed25519格式的密钥，可以使得gerrit正常</li>
+</ul>
+<hr />
+<h2 id="gerrit添加仓库和分支"><a class="header" href="#gerrit添加仓库和分支">Gerrit添加仓库和分支</a></h2>
+<p>1：联系管理员添加分支</p>
+<p>2：添加仓库到manifest</p>
+<ul>
+<li>拉manifest
+<img src="method-of-Git/image-20231120145347570.png" alt="image-20231120145347570" /></li>
+</ul>
+<p>3：修改相应分支仓库</p>
+<ul>
+<li>manifest\rk_manifests\include\rk_modules_repository_maiyun.xml
+<img src="method-of-Git/image-20231120145927797.png" alt="image-20231120145927797" /></li>
+</ul>
+<p>4：提交merge后，需<mark>重新init</mark>该仓库所在项目，而后再提交相关代码</p>
+<hr />
+<h2 id="gerrit拉取代码"><a class="header" href="#gerrit拉取代码">Gerrit拉取代码</a></h2>
+<p>--- Gerrit拉取代码和github差不多</p>
+<ul>
+<li>
+<p>拉取代码</p>
+<p><img src="method-of-Git/image-20231120150539929.png" alt="image-20231120150539929" /></p>
+</li>
+</ul>
+<p>git clone &quot;ssh链接&quot;即可</p>
+<ul>
+<li>
+<p>repo init</p>
+<pre><code class="language-c">repo init --repo-url=ssh://替换成自己@10.110.1.100:29418/repo --no-repo-verify --repo-branch=reponew -u ssh://替换成自己@10.110.1.100:29418/manifest.git -m rk_3568_manifests/rk3568_linux_bu16.xml
+</code></pre>
+<p>出现and try again是正常的；</p>
+</li>
+<li>
+<p>repo sync 即可</p>
+</li>
+</ul>
+<hr />
+<h4 id="gerrit-基线-同步编译提交撤销回退"><a class="header" href="#gerrit-基线-同步编译提交撤销回退">Gerrit 基线-同步/编译/提交/撤销/回退</a></h4>
+<ul>
+<li>
+<p>同步代码</p>
+<pre><code class="language-c">repo sync -c --no-tags     -j32  
+//**--no-tags** don't fetch tags.该选项指定不获取服务器上的tag信息
+</code></pre>
+</li>
+<li>
+<p>清除、重置(丢弃分支)、同步</p>
+<pre><code class="language-c">repo forall -c git clean -fd &amp;&amp; repo forall -c git reset --hard &amp;&amp; repo sync -c --no-tags
+
+# 解决repo问题
+.repo/repo/repo forall -c git clean -fd &amp;&amp; .repo/repo/repo forall -c git reset --hard &amp;&amp; .repo/repo/repo sync -c --no-tags
+</code></pre>
+</li>
+<li>
+<p>编译</p>
+<pre><code class="language-c">//编译
+source build/envsetup.sh
+lunch 40
+./build.sh -AUCKu
+</code></pre>
+</li>
+<li>
+<p>提交</p>
+<pre><code class="language-c">//代码提交
+# 添加这两个文件
+git add 文件名1 文件名2
+
+# 添加所有文件
+git add . 
+
+# 添加已跟踪文件
+git add -u .
+
+# 添加已跟踪和未跟踪的文件
+git add -A .
+
+# 取消添加该文件
+git reset HEAD+文件名         
+</code></pre>
+<pre><code class="language-c">//example
+# 添加所有changes文件
+git add .
+git commit -m &quot;[Project][Module]Add for xxx by xxx&quot;
+
+# 查看分支
+git branch -a
+* (HEAD detached from 984f637aa77e)
+  remotes/m/master -&gt; origin/a1
+  remotes/origin/a1
+  remotes/origin/master
+
+# 推送至a1分支上
+git push origin HEAD:refs/for/a1
+</code></pre>
+</li>
+<li>
+<p>撤销</p>
+<pre><code class="language-c">git reset --hard HEAD (撤销最新的提交) 
+git reset --hard HEAD^ (撤销上一次提交) 
+git reset --hard HEAD^^ (撤销上上一次提交) 
+git reset --hard commit ID (commit ID指的是通过git log看到的commit后面的一长串ID的前7位)
+</code></pre>
+</li>
+<li>
+<p>回退/恢复</p>
+<pre><code class="language-c">git log
+git checkout -f 487de35b82fd72b78058b7c5efa34e9a59e0bb87 
+
+git reset --hard &quot;xxxxxxxx&quot;
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="gerrit-本地分支-查看创建切换重命名删除"><a class="header" href="#gerrit-本地分支-查看创建切换重命名删除">Gerrit-本地分支-查看/创建/切换/重命名/删除</a></h4>
+<ul>
+<li>
+<p>查看</p>
+<pre><code class="language-c"># 查看本地分支
+git branch
+
+# 查看远程分支
+git branch -r
+
+# 查看所有分支
+git branch -a
+</code></pre>
+</li>
+<li>
+<p>创建</p>
+<pre><code class="language-c"># 仅创建
+git branch name（分支名）
+
+# 创建并直接切换至该分支
+git checkout -b name(分支名)
+</code></pre>
+</li>
+<li>
+<p>切换</p>
+<pre><code class="language-c">git checkout name（分支名）
+</code></pre>
+</li>
+<li>
+<p>重命名</p>
+<pre><code class="language-c"># 重命名本地分支
+git branch -m old_name new_name
+</code></pre>
+</li>
+<li>
+<p>删除</p>
+<pre><code class="language-c"># 删除本地分支
+git branch -d name
+
+# 删除远程分支（小卡拉米用不到的）
+git push origin -delete :name 
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="gerrit-本地远程仓库对比"><a class="header" href="#gerrit-本地远程仓库对比">Gerrit-本地远程仓库对比</a></h4>
+<ul>
+<li>
+<p>更新本地远程分支后与本地分支进行对比</p>
+<pre><code class="language-c"># 更新本地远程分支
+git fetch origin
+
+# 对比
+git diff 本地分支 origin/xxx //只能看到diff内容
+
+# 通过log查看区别
+git log
+git log origin/xxxx 
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="git-切换分支同步修改"><a class="header" href="#git-切换分支同步修改">Git-切换分支同步修改</a></h4>
+<ul>
+<li>
+<p>将当前分支修改放入一个新的Git分支</p>
+<pre><code class="language-c"># 暂存
+git stash
+    
+# 创建新的分支
+git checkout -b new-feature
+    
+# 将暂存拉到新的分支
+git stash apply
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="git-解除本地分支冲突"><a class="header" href="#git-解除本地分支冲突">Git-解除本地分支冲突</a></h4>
+<ul>
+<li>
+<p>保存修改文件和记录修改内容</p>
+</li>
+<li>
+<p>通过git stash 解决冲突</p>
+<pre><code class="language-c"># 暂存
+git stash
+    
+# pull 更新
+git pull &lt;remote&gt; &lt;branch&gt;
+//这里可以检查下是否是最新的，可能要拉取下远程分支
+
+# 还原暂存
+git stash pop
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="git-stash的用法"><a class="header" href="#git-stash的用法">Git stash的用法</a></h4>
+<ul>
+<li>
+<p>git stash 暂存本地修改至缓存区</p>
+</li>
+<li>
+<p>Git-stash pop 和 Git-stash apply的区别</p>
+<pre><code class="language-c"># 查看保存的信息和标记
+git stash list
+
+# 拉取方式
+git stash pop 	//拉取最新的暂存区同时删除对应的stash list
+git stash apply	//不删除对应的stash list
+
+# 删除多的list
+git stash drop	//删除最新的list
+git stash claer	//清除全部的stash
+</code></pre>
+</li>
+<li>
+<p>指定stash list</p>
+<pre><code class="language-c"># git stash list
+
+# git stash xxxx stash@{x}
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="git-patch-打包应用"><a class="header" href="#git-patch-打包应用">Git-patch 打包/应用</a></h4>
+<ul>
+<li>
+<p>打包</p>
+<pre><code class="language-c"># 打包最近的一个log
+git format-patch -1
+# 打包最近的两个log
+git format-patch -2
+# 同理打包最近的n个log
+git format-patch -n
+
+# 打包n1、n2版本间的patch
+git format-patch -n1 -n2
+
+# 打包从根到指定log的所有patch
+git format-patch --root 6a99bdd14b66de695519cca7a72d9b652e9bfdc7
+
+# 将patch输出到指定文件
+git format-patch xxx --stdout &gt; xxx.patch ==&gt; git format-patch -4 --stdout &gt; 1.patch
+</code></pre>
+</li>
+<li>
+<p>应用</p>
+<pre><code class="language-c"># 合并指定log
+git am xxx.patch
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="git-fork上传"><a class="header" href="#git-fork上传">Git-Fork/上传</a></h4>
+<ul>
+<li>
+<p>Fork</p>
+<pre><code class="language-c">git clone xxxx(ssh)
+</code></pre>
+</li>
+<li>
+<p>上传自己本地仓库</p>
+<pre><code class="language-c">rm -r .git //删除原有git信息
+git init
+git add .
+git commit -m &quot;xxxx&quot;
+//提前在git官网新建repository
+git remote add origin 远程库地址(如：git push --set-upstream origin master)  
+git push --set-upstream origin master
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="gitignore"><a class="header" href="#gitignore">gitignore</a></h4>
+<ul>
+<li>
+<p>忽视如out等文件
+--- 在.git同目录下</p>
+<pre><code class="language-c">touch .gitignore //生成gitignore文件
+vim .gitignore   //改下需要忽略的文件
+
+.gitignore 文件本身可以忽略
+</code></pre>
+</li>
+<li>
+<p>权限引起的git status未显示变化，但是vscode等ide显示changes
+--- 忽略权限即可</p>
+<pre><code class="language-c">项目修改：git config core.filemode false
+全局修改：git config --global core.filemode false
+</code></pre>
+</li>
+</ul>
+<hr />
+<h4 id="gitgerritrepo-error"><a class="header" href="#gitgerritrepo-error">Git/Gerrit/Repo-error</a></h4>
+<ul>
+<li>
+<p>error: failed to push some refs to</p>
+<pre><code class="language-c"># 本质是第一次提交缺失Readme文件，第一次初始提交问题，按照出错提示即可
+example：
+gitdir=$(git rev-parse --git-dir); scp -p -P 29418 xxxx@10.110.1.100:hooks/commit-msg ${gitdir}/hooks/
+git commit --amend --no-edit
+</code></pre>
+</li>
+<li>
+<p>invalid syntax
+<mark>使用项目自带的repo即可：.repo/repo/repo syncu</mark></p>
+<pre><code class="language-c"># 普通用户repo失效
+mkdir -p ~/.bin
+PATH=&quot;${HOME}/.bin:${PATH}&quot;
+curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/.bin/repo
+chmod a+rx ~/.bin/repo
+</code></pre>
+</li>
+<li>
+<p>python版本错误</p>
+<pre><code class="language-c">//2.0/3.0 pyhton版本的老问题了
+# 查看当前默认python版本
+python --version
+
+# 查看python3位置
+whereis python3
+
+# 删除原有python2软链接
+rm /usr/bin/python
+
+# 链接3.x版本的软链接
+ln -s /usr/bin/python3.x /usr/bin/python
+
+# 重新检查当前python版本
+</code></pre>
+</li>
+<li>
+<p>git status未显示改动，但是VSCODE显示changes
+--- 文件权限导致changes提升
+= =》忽视文件权限即可</p>
+<pre><code class="language-c">项目修改：git config core.filemode false
+全局修改：git config --global core.filemode false
+</code></pre>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="method-of-adb.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="Linux.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="method-of-adb.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="Linux.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

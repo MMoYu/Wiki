@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>DTS - world hello</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">首页</a></li><li class="chapter-item expanded "><a href="Kernel-Debug.html"><strong aria-hidden="true">1.</strong> Kernel-Debug</a></li><li class="chapter-item expanded "><a href="method-of-adb.html"><strong aria-hidden="true">2.</strong> adb-method</a></li><li class="chapter-item expanded "><a href="method-of-Git.html"><strong aria-hidden="true">3.</strong> Git-method</a></li><li class="chapter-item expanded "><a href="Linux.html" class="active"><strong aria-hidden="true">4.</strong> DTS</a></li><li class="chapter-item expanded "><a href="selinux-sepolicy.html"><strong aria-hidden="true">5.</strong> selinux-sepolicy</a></li><li class="chapter-item expanded "><a href="u-boot.html"><strong aria-hidden="true">6.</strong> uboot</a></li><li class="chapter-item expanded "><a href="DMA.html"><strong aria-hidden="true">7.</strong> DMA</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">world hello</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
+<h2 id="dts---device-tree-source"><a class="header" href="#dts---device-tree-source">DTS - Device Tree Source</a></h2>
+<p>--- 纷繁芜杂，如星星点点；点清且明，如月映波光</p>
+<h3 id="概述"><a class="header" href="#概述">概述</a></h3>
+<p>--- DTS是一种描述==硬件的数据结构==，起源于OF（OpenFirmware）；将驱动代码和设备硬件信息相互隔离；设备树对硬件信息进行抽象，驱动代码则负责逻辑处理 == 》 大量减少了内核当中的冗余代码；</p>
+<ul>
+<li>DTS：设备树的源文件，硬件的相应信息都在其中；
+<ul>
+<li>每一款硬件一般一个主控，==一个主控SOC对应一个DTS文件==</li>
+</ul>
+</li>
+<li>DTSI：设备树头文件扩展名，相当于C语言的头文件；
+<ul>
+<li>一个SOC会对应多个设备，这些设备对于不同的SOC来说都是相同的，因此将这些==相同的DTS配置==抽象为一个.dtsi文件，SOC使用设备时，在DTS文件中包含该DTSI即可；</li>
+<li>DTSI一般用于描述SOC的内部外设信息，如CPU架构、主频、IIC、SPI、外设(Motor、Fan等)；</li>
+<li>==相同节点的配置，dts中的配置会覆盖dtsi的配置，后编译的dtsi也会覆盖之前同节点的dtsi配置==，注意检查节点配置是否重复配置或默认配置先后顺序；</li>
+</ul>
+</li>
+<li>DTC：DTS的编译工具，相当于众所周知的GCC；在内核源码scripts/dtc路径下已包含DTC相关工具</li>
+<li>DTB：DTS被DTC编译后的二进制格式设备树文件，才可被linux内核解析；
+<ul>
+<li>DTB通过Bootloader引导加载到内核当中；</li>
+</ul>
+</li>
+</ul>
+<h3 id="dts框架"><a class="header" href="#dts框架">DTS框架</a></h3>
+<ul>
+<li>Linux kernel设备树路径：</li>
+</ul>
+<p>手动编译</p>
+<pre><code class="language-bash"> ./scripts/dtc/dtc -I dts -O dtb -o xxx.dtb arch/arm/boot/dts/xxx.dts // 编译 dts 为 dtb
+ ./scripts/dtc/dtc -I dtb -O dts -o xxx.dts arch/arm/boot/dts/xxx.dtb // 反编译 dtb 为 dts
+</code></pre>
+<hr />
+<hr />
+<h3 id="dts注意事项"><a class="header" href="#dts注意事项">dts注意事项</a></h3>
+<h4 id="1-自行添加dts节点和代码的优势"><a class="header" href="#1-自行添加dts节点和代码的优势">1. 自行添加dts节点和代码的优势</a></h4>
+<p>--- 对于某些开发中常见的功能，可以改代码，使用dts的参数的方法；有利于后续调试仅修改dts参数，尽量解耦合；</p>
+<hr />
+<h4 id="2-确定项目dts所在的位置"><a class="header" href="#2-确定项目dts所在的位置">2. 确定项目DTS所在的位置</a></h4>
+<p>--- 基于RK平台</p>
+<h5 id="方法一"><a class="header" href="#方法一">方法一</a></h5>
+<ul>
+<li>./build.sh lunch
+<img src="Linux/image-20231010134901614.png" alt="image-20231010134901614" /></li>
+<li>查看对应的deconfig
+<img src="Linux/image-20231010135041497.png" alt="image-20231010135041497" /></li>
+<li>查看细节
+<img src="Linux/image-20231010135115312.png" alt="image-20231010135115312" /></li>
+<li>在对应的dts文件里面找包含的DTS和DTSI即可</li>
+</ul>
+<h5 id="法二"><a class="header" href="#法二">法二</a></h5>
+<ul>
+<li>
+<p>进入output路径，打开.config
+<img src="Linux/image-20231102144014071.png" alt="image-20231102144014071" /></p>
+</li>
+<li>
+<p>即可看到相应的dts</p>
+<p><img src="Linux/image-20231102144156362.png" alt="image-20231102144156362" /></p>
+</li>
+</ul>
+<hr />
+<h2 id="交叉编译"><a class="header" href="#交叉编译">交叉编译</a></h2>
+<h3 id="android-ndk交叉编译"><a class="header" href="#android-ndk交叉编译">Android NDK交叉编译</a></h3>
+<p>--- 适用于Android平台，参考AS005文档</p>
+<h3 id="项目源码环境"><a class="header" href="#项目源码环境">项目源码环境</a></h3>
+<p>--- 适用于Android平台，参考AS005文档</p>
+<h3 id="源码编译后的输出目录下进行环境编译"><a class="header" href="#源码编译后的输出目录下进行环境编译">源码编译后的输出目录下进行环境编译</a></h3>
+<p>--- 适用于 Linux；应该也适用于android(未验证)</p>
+<ul>
+<li>Linux
+一般会在buildroot/output/rockchip_rkxx/host下 
+<ul>
+<li>buildroot/output/rockchip_rkxx/host/bin  看编译版本</li>
+<li>在buildroot/output/rockchip_rkxx/host/  写源码 hello.c</li>
+<li>./host/bin/arm-buildroot-linux-gnueabihf-gcc hello.c -o hello</li>
+</ul>
+</li>
+<li>android
+待后续验证补充</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="method-of-Git.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="selinux-sepolicy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="method-of-Git.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="selinux-sepolicy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
